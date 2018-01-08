@@ -49,10 +49,29 @@ for item in precip_seattle:
     date=item["date"]
     month=int(date[5:7])
     sum_rainfall[month-1]+=rainfall
-
-
        
-        
+with open('data.txt', 'w') as outfile:
+    json.dump(sum_rainfall, outfile)   
+
+#Part 2: 
+
+#whole year rain bucket
+sum_year_rainfall=[]
+for item in precip_seattle:
+    rainfall=int(item["value"])
+    sum_year_rainfall.append(rainfall)
+year_rainfall=(sum(sum_year_rainfall))
+
+#tried this, didn't work, ran out of time! 
+percent_rainfall=[]
+for item in sum_rainfall:
+    a=float(item)
+    b=year_rainfall
+    month_percent=a/b*100 #Python 2 sucks at calculations!!
+    print(month_percent)
+    percent_rainfall.append(month_percent)
+print(percent_rainfall)
+
     
    
 
